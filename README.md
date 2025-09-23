@@ -28,7 +28,7 @@ py --version
 STEP 2: プロジェクト用フォルダの作成
 これから作る全ファイルをまとめるルートフォルダ django_demo を作り、その中へ移動します。
 
-Mac / Linux
+####　Mac / Linux
 ```bash
 mkdir django_demo
 ```
@@ -87,4 +87,5 @@ bash
 コードをコピーする
 python manage.py runserver
 ブラウザで http://127.0.0.1:8000/ にアクセスし、ロケット画面 🚀 が表示されれば成功です！
+
 

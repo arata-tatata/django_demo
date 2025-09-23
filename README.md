@@ -35,23 +35,23 @@ mkdir django_demo
 ```bash
 cd django_demo
 ```
-Windows
+#### Windows
 ```powershell
 mkdir django_demo
 ```
 ```powershell
 cd django_demo
 ```
-STEP 3: 仮想環境の作成と有効化
+### STEP 3: 仮想環境の作成と有効化
 
-Mac / Linux
+#### Mac / Linux
 ```bash
 python3 -m venv .venv
 ```
 ```bash
 source .venv/bin/activate
 ```
-Windows
+#### Windows
 ```powershell
 py -m venv .venv
 ```
@@ -60,15 +60,15 @@ py -m venv .venv
 ```
 ✅ 成功のサイン: 行頭に (.venv) が表示されればOK！
 
-STEP 4: Djangoのインストール
-共通
+### STEP 4: Djangoのインストール
+#### 共通
 ```bash
 pip install django
 ```
-STEP 5: プロジェクトの作成
+### STEP 5: プロジェクトの作成
 Djangoの設計図「プロジェクト」を作成します。
 名前は memoproject にし、最後の .（ピリオド）を忘れないでください！
-
+#### 共通
 ```bash
 django-admin startproject memoproject .
 ```
@@ -79,8 +79,8 @@ django_demo/
 ├── memoproject/   <-- これができた！
 └── manage.py      <-- これもできた！
 ```
-STEP 6: 初期設定 & サーバ起動
-共通
+### STEP 6: 初期設定 & サーバ起動
+#### 共通
 ```bash
 python manage.py migrate
 ```
@@ -88,6 +88,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 ブラウザで http://127.0.0.1:8000/ にアクセスし、ロケット画面 🚀 が表示されれば成功です！
+
 
 
 

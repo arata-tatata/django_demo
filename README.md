@@ -100,21 +100,48 @@ cd django_demo
 ```
 
 ### STEP 3: 仮想環境について
+### STEP 3: 仮想環境について
+
 #### 仮想環境を作成する
-#### ちゃんとできてるか確認
-#### 仮想環境を有効化
-#### 仮想環境から出る
-#### 作業するので、もう一度有効化しよう！
-```bash
+Django開発では、プロジェクトごとに仮想環境を作るのが基本です。  
+ライブラリの衝突を防ぎ、環境をきれいに保てます。
 # Mac / Linux
 python3 -m venv .venv
-source .venv/bin/activate
 # Windows
 py -m venv .venv
+
+#### ちゃんとできてるか確認
+`.venv` フォルダが作成されていればOKです。  
+Pythonの実行パスが `.venv` 配下になっているかも確認しましょう。
+# Mac / Linux
+which python
+# Windows
+where python
+# 共通（pip の中身）
+pip list
+👉 初期状態なら「pip, setuptools, wheel」だけが表示されます。
+
+#### 仮想環境を有効化
+有効化するとプロンプトの先頭に `(.venv)` が付きます。
+# Mac / Linux
+source .venv/bin/activate
+# Windows（PowerShell）
+.\.venv\Scripts\Activate.ps1
+
+#### 仮想環境から出る
+作業が終わったら抜けることもできます。
+# 共通
+deactivate
+
+#### 作業するので、もう一度有効化しよう！
+プロジェクトを再開するたびに、最初に再度有効化してください。
+# Mac / Linux
+source .venv/bin/activate
+# Windows
 .venv\Scripts\activate
-```
-> ✅ 行頭に `(.venv)` が表示されれば有効化成功。  
-> 🔁 端末を開き直した時は、**再度有効化**してから作業を再開。
+✅ 行頭に `(.venv)` が表示されればOK。  
+🔁 ターミナルを閉じたら毎回必要です。
+
 
 ### STEP 4: Djangoのインストール
 ```bash
@@ -583,4 +610,5 @@ django_demo/
 │           └── memo_list.html
 │
 └── manage.py         # ★ Djangoの管理ツール
+
 

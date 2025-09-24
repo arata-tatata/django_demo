@@ -226,7 +226,7 @@ django_demo/
 │   └── ...
 │
 └── manage.py         # ★ Djangoの管理ツール
-
+```
 ### 6.2 モデル（データ構造）
 ```python
 # memos/models.py
@@ -265,6 +265,7 @@ python manage.py createsuperuser
 
 ### 6.3 フォーム・ビュー・URL
 この前に、まずはフォームを新規で作成。
+```text
 django_demo/
 ├── .venv/       
 │
@@ -280,11 +281,12 @@ django_demo/
 │   ├── forms.py      # これを新規作成！
 │   └── ...
 │
-└── manage.py     
+└── manage.py
+``` 
 memos/forms.py
 を作成してください。
 
-6.3 フォーム・ビュー・URL
+### 6.3 フォーム・ビュー・URL
 ```python
 # memos/forms.py
 from django import forms
@@ -612,6 +614,7 @@ django_demo/
 │           └── memo_list.html
 │
 └── manage.py         # ★ Djangoの管理ツール
+
 
 
 

@@ -594,3 +594,330 @@ python manage.py runserver
 
 
 
+
+### AIへコード
+
+```
+Djangoでメモアプリを作成しています
+新機能を追加したいです。
+まずは全体のコードを出力するので、記憶してください。
+
+
+django_demo/
+├── .venv/       
+│
+├── memoproject/     
+│   ├── settings.py   
+│   ├── urls.py     
+│   └── ...
+│
+├── memos/            
+│   ├── models.py    
+│   ├── views.py      
+│   ├── urls.py      
+│   ├── forms.py      # これを新規作成！
+│   └── ...
+│
+└── manage.py
+
+こんな構成です。
+
+# memos/views.py
+from django.shortcuts import render, redirect
+from .models import Memo
+from .forms import MemoForm
+
+def memo_list_create(request):
+    if request.method == 'POST':
+        form = MemoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('memo_list')
+    else:
+        form = MemoForm()
+    memos = Memo.objects.order_by('-created_at')
+    return render(request, 'memos/memo_list.html', {'form': form, 'memos': memos})
+
+
+
+# memos/admin.py
+from django.contrib import admin
+from .models import Memo
+
+@admin.register(Memo)
+class MemoAdmin(admin.ModelAdmin):
+    list_display = ('id','title','created_at')
+    search_fields = ('title','body')
+
+
+
+"""
+URL configuration for memoproject project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+# memoproject/urls.py
+from django.contrib import admin
+from django.urls import path
+from memos.views import memo_list_create
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', memo_list_create, name='memo_list'),
+]
+
+
+
+
+/* ===== Design Tokens ===== */
+:root{
+    --bg:#f6f7f9;
+    --panel:#fff;
+    --ink:#1f2328;
+    --ink-2:#6b7280;
+    --border:#e5e7eb;
+    --brand:#2563eb;
+    --brand-ink:#fff;
+    --shadow:0 1px 2px rgba(0,0,0,.05), 0 12px 28px rgba(0,0,0,.08);
+    --radius:14px;
+    --space:24px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1520;
+      --ink:#e6edf3;
+      --ink-2:#9aa4af;
+      --border:#1f2a36;
+      --brand:#3b82f6;
+      --brand-ink:#0b0f14;
+      --shadow:0 1px 2px rgba(0,0,0,.35), 0 12px 30px rgba(0,0,0,.45);
+    }
+  }
+  
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  
+  /* ===== Layout / Typography ===== */
+  .page{
+    margin:0;
+    background:
+      radial-gradient(1000px 500px at 8% -10%, rgba(37,99,235,.08), transparent 40%),
+      radial-gradient(800px 420px at 110% 0%, rgba(16,185,129,.06), transparent 35%),
+      var(--bg);
+    color:var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    line-height:1.75;
+    padding: clamp(20px, 3vw, 40px);
+  }
+  
+  /* container-like centralize without changing HTML */
+  .page > h1,
+  .page > h2,
+  .page > form,
+  .page > .memo-card,
+  .page > p,
+  .page > div{
+    max-width: 880px;
+    margin-left:auto; margin-right:auto;
+  }
+  
+  .page-title{
+    margin: 6px auto 18px;
+    font-weight:800;
+    letter-spacing:.2px;
+    font-size: clamp(28px, 3.5vw, 36px);
+  }
+  .section-title{
+    margin: 28px auto 12px;
+    font-weight:700;
+    font-size: clamp(18px, 2.4vw, 22px);
+    color:var(--ink);
+  }
+  
+  /* ===== Form ===== */
+  .memo-form{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px;
+    box-shadow:var(--shadow);
+  }
+  .field-label{
+    display:block;
+    font-size:13px;
+    color:var(--ink-2);
+    margin: 10px 0 6px;
+  }
+  
+  /* Django form widgets inherit these element styles */
+  input, textarea{
+    width:100%;
+    padding:12px 14px;
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--border);
+    border-radius:10px;
+    outline:none;
+    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  input:focus, textarea:focus{
+    border-color: color-mix(in oklab, var(--brand) 60%, var(--border));
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 18%, transparent);
+    background: color-mix(in oklab, var(--panel) 92%, var(--brand) 8%);
+  }
+  
+  /* ===== Button ===== */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    gap:8px;
+    border:0; cursor:pointer; user-select:none;
+    border-radius:12px;
+    padding:12px 16px;
+    font-weight:700;
+    letter-spacing:.2px;
+    transition: transform .08s ease, filter .12s ease, box-shadow .12s ease;
+  }
+  .btn-primary{
+    background: linear-gradient(180deg,
+      color-mix(in oklab, var(--brand) 100%, #fff 0%) 0%,
+      color-mix(in oklab, var(--brand) 80%, #000 0%) 100%);
+    color: var(--brand-ink);
+    box-shadow: 0 2px 0 rgba(0,0,0,.12), 0 10px 18px rgba(37,99,235,.18);
+  }
+  .btn-primary:hover{ filter:brightness(1.04); box-shadow: 0 2px 0 rgba(0,0,0,.12), 0 16px 26px rgba(37,99,235,.22); }
+  .btn-primary:active{ transform:translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 10px 18px rgba(37,99,235,.18); }
+  
+  /* ===== Cards ===== */
+  .memo-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    margin:16px auto;
+    box-shadow:var(--shadow);
+  }
+  .memo-title{
+    display:block;
+    font-size:18px;
+    font-weight:700;
+    margin:2px 0 6px;
+  }
+  .time{
+    color:var(--ink-2);
+    font-size:12px;
+    margin-bottom:10px;
+  }
+  .memo-body{
+    white-space:pre-wrap;
+  }
+  /* Empty state */
+  .empty{
+    color:var(--ink-2);
+    margin-top:8px;
+  }
+  /* Mobile tweaks */
+  @media (max-width:640px){
+    .memo-form, .memo-card { padding:16px; }
+  }
+
+
+
+
+{% load static %}
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>メモ</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="{% static 'memos/css/memos.css' %}">
+  </head>
+  <body class="page">
+    <h1 class="page-title">メモ</h1>
+
+    <h2 class="section-title">新規作成</h2>
+    <form method="post" class="memo-form" id="memo-form">
+      {% csrf_token %}
+      <label class="field-label" for="title">タイトル</label>{{ form.title }}
+      <label class="field-label" for="body">本文</label>{{ form.body }}
+      <button type="submit" class="btn btn-primary">保存</button>
+    </form>
+
+    <h2 class="section-title">一覧</h2>
+    {% for m in memos %}
+      <div class="memo-card">
+        <strong class="memo-title">{{ m.title }}</strong>
+        <div class="time">{{ m.created_at|date:"Y-m-d H:i" }}</div>
+        <div class="memo-body">{{ m.body|linebreaksbr }}</div>
+      </div>
+    {% empty %}
+      <p class="empty">まだメモがありません。</p>
+    {% endfor %}
+  </body>
+</html>
+
+
+
+
+# memos/forms.py
+from django import forms
+from .models import Memo
+
+class MemoForm(forms.ModelForm):
+    class Meta:
+        model = Memo
+        fields = ('title','body')
+
+
+from django.db import models
+
+# Create your models here.
+# memos/models.py
+from django.db import models
+
+class Memo(models.Model):
+    title = models.CharField(max_length=100)
+    body = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+
+
+from django.db import models
+
+# Create your models here.
+# memos/models.py
+from django.db import models
+
+class Memo(models.Model):
+    title = models.CharField(max_length=100)
+    body = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+```
+
+
+
+
+
+
+
+

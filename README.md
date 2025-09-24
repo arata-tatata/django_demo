@@ -1,3 +1,6 @@
+https://docs.google.com/forms/d/e/1FAIpQLSc0Hxny_pZevzhu6fCl7pYsZt6A4kc_Fs7if8-zjuuzoNrOwg/viewform
+
+
 # Djangoハンズオン：シンプルなメモアプリ
 
 **ゴール:** 参加者全員が「ロケット画面 🚀」に到達し、最小構成のメモアプリを動かす。
@@ -913,6 +916,7 @@ class Memo(models.Model):
     def __str__(self):
         return self.title
 ```
+
 
 
 

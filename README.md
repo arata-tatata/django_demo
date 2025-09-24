@@ -631,6 +631,29 @@ django_demo/
 ```
 
 
+## 5. プロジェクト構成（イメージ）
+```text
+django_demo/
+├── .venv/            # Python仮想環境（Git対象外）
+│
+├── memoproject/      # ① プロジェクト設定
+│   ├── settings.py   # ★ サイト全体の設定（アプリ登録など）
+│   ├── urls.py       # ★ サイト全体のURLの入口
+│   └── ...
+│
+├── memos/            # ② メモアプリ（第4部で作成）
+│   ├── models.py     # ★ データ構造（Model）
+│   ├── views.py      # ★ 処理（View）
+│   ├── urls.py       # ★ アプリ内URL
+│   ├── admin.py      # ★ 管理画面で編集するためのファイル
+│   └── templates/
+│       └── memos/
+│           └── memo_list.html
+│
+└── manage.py         # ★ Djangoの管理ツール
+```
+
+
 
 
 

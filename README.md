@@ -613,7 +613,22 @@ django_demo/
 │           └── memo_list.html
 │
 └── manage.py         # ★ Djangoの管理ツール
+```
 
+## 5. プロジェクト構成（イメージ）
+```text
+django_demo/
+├── .venv/            # Python仮想環境（Git対象外）
+│
+├── memoproject/      # ① プロジェクト設定
+│
+├── memos/            # ② メモ機能（第4部で作成）
+│
+├── User/             # ② ユーザー登録機能（第4部で作成）
+...
+│
+└── manage.py         # ★ Djangoの管理ツール
+```
 
 
 

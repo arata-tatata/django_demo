@@ -199,16 +199,6 @@ python3 manage.py startapp memos
 # Windows
 py manage.py startapp memos
 ```
-
-`memoproject/settings.py` に `memos` を追加：
-```python
-# memoproject/settings.py
-INSTALLED_APPS = [
-    'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
-    'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
-    'memos',  # 追加
-]
-```
 ## ディレクトリイメージ
 ```text
 django_demo/
@@ -226,6 +216,15 @@ django_demo/
 │   └── ...
 │
 └── manage.py         # ★ Djangoの管理ツール
+```
+`memoproject/settings.py` に `memos` を追加：
+```python
+# memoproject/settings.py
+INSTALLED_APPS = [
+    'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
+    'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
+    'memos',  # 追加
+]
 ```
 ### 6.2 モデル（データ構造）
 ```python
@@ -614,6 +613,7 @@ django_demo/
 │           └── memo_list.html
 │
 └── manage.py         # ★ Djangoの管理ツール
+
 
 
 

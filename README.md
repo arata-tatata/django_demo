@@ -96,8 +96,8 @@ Windows（PowerShell）
 
 #### 仮想環境から出る
 作業が終わったら抜けることもできます。
-```
 共通
+```
 deactivate
 ```
 
@@ -587,6 +587,7 @@ python manage.py runserver
 ブラウザで **http://127.0.0.1:8000/** → ロケット画面 🚀 が出ればOK！
 
 ---
+
 
 
 
